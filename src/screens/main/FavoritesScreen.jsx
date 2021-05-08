@@ -1,7 +1,6 @@
 import React from 'react'
 import { fetchMentors } from '../../hooks/useMentors'
-import { Container, MentorCard, Wrapper, Box, Text } from '../../components'
-import { FlatList } from 'react-native'
+import { Container, MentorList, Wrapper, Box, Text } from '../../components'
 
 const FavoritesScreen = () => {
   const { loading, data } = fetchMentors()
@@ -14,19 +13,7 @@ const FavoritesScreen = () => {
         </Text>
       </Box>
       <Wrapper mdCol={8} loading={loading}>
-        <FlatList
-          style={{ width: 100 + '%' }}
-          data={data}
-          renderItem={({ item: mentor }) => (
-            <MentorCard
-              key={mentor.id}
-              mentor={mentor}
-              hearth={mentor.is_favorite}
-            />
-          )}
-          contentContainerStyle={{ paddingBottom: 70 }}
-          keyExtractor={(item) => item.cell}
-        />
+        <MentorList data={data || null} />
       </Wrapper>
     </Container>
   )
