@@ -9,7 +9,7 @@ import Text from './Text'
 const Container = styled(Pressable)`
   flex-direction: row;
   width: 100%;
-  height: 110px;
+  height: auto;
   border-radius: 10px;
   margin-bottom: 5px;
   background-color: #2c2c2c;
@@ -39,38 +39,47 @@ const Avatar = styled(Image)`
   border-radius: 50px;
 `
 
-const MentorCard = ({ item, hearth }) => {
+const MentorCard = ({ mentor, hearth }) => {
   const navigation = useNavigation()
-  const [rating, setRating] = useState(0)
-  const { name, picture, dob } = item
-
-  const getRanting = useCallback(() => {
-    let random = Math.random() * 5 + 1
-    setRating(random)
-  }, [rating])
-
-  useEffect(() => {
-    getRanting()
-  }, [])
+  const {
+    first_name,
+    last_name,
+    profile: { image },
+    stars,
+    comments,
+  } = mentor
 
   const goProfile = () => {
-    navigation.navigate('MentorProfile', { info: { name, picture, rating } })
+    navigation.navigate('MentorProfile', {
+      info: {
+        first_name,
+        last_name,
+        image:
+          'http://45.55.110.117/mentornow-api/api/public/images/users/user@user.com/yo.jpg',
+        stars,
+      },
+    })
   }
 
   return (
     <Container onPress={goProfile}>
       <LeftColumn>
-        <Avatar source={{ uri: picture.medium }} />
+        <Avatar
+          source={{
+            uri:
+              'http://45.55.110.117/mentornow-api/api/public/images/users/user@user.com/yo.jpg',
+          }}
+        />
       </LeftColumn>
       <Column>
-        <Text fontFamily="bold">{name.first + ' ' + name.last}</Text>
+        <Text fontFamily="bold">{first_name + ' ' + last_name}</Text>
         <Text fontFamily="light" fontSize="14px">
           Software Engineere
         </Text>
         <Text fontFamily="light" fontSize="14px">
-          Mentorias impartidas: {dob.age}
+          Mentorias impartidas: {comments}
         </Text>
-        <Rating primary value={rating} />
+        <Rating primary value={stars} />
       </Column>
       <RightColumn>
         {hearth && (

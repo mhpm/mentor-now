@@ -16,9 +16,13 @@ const MentorsScreen = () => {
       <Wrapper mdCol={8} loading={loading}>
         <FlatList
           style={{ width: 100 + '%' }}
-          data={null}
-          renderItem={(item) => (
-            <MentorCard primary key={item.cell} item={item.item} />
+          data={data}
+          renderItem={({ item: mentor }) => (
+            <MentorCard
+              key={mentor.id}
+              mentor={mentor}
+              hearth={mentor.is_favorite}
+            />
           )}
           contentContainerStyle={{ paddingBottom: 70 }}
           keyExtractor={(item) => item.cell}

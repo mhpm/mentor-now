@@ -8,7 +8,7 @@ const Header = styled(View)`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 160px;
+  height: 220px;
   background-color: #2c2c2c;
   padding-top: 120px;
 `
@@ -31,14 +31,14 @@ const Avatar = styled(Image)`
   margin: 0px;
   padding: 0px;
 `
-const ProfileHeader = ({ name, picture }) => {
+const ProfileHeader = ({ name, image }) => {
   return (
     <Header>
-      <Text fontFamily="bold" fontSize="26px">
+      <Text fontFamily="bold" fontSize="26px" mt="50px">
         {name}
       </Text>
       <Border>
-        <Avatar source={{ uri: picture }} />
+        <Avatar source={{ uri: image }} />
       </Border>
     </Header>
   )

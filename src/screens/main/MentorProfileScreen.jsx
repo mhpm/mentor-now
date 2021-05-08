@@ -31,7 +31,7 @@ const topics = [
 
 const MentorProfileScreen = ({ route }) => {
   const { info } = route.params
-  const { name, picture, rating } = info
+  const { first_name, last_name, image, stars } = info
 
   return (
     <Container icon>
@@ -40,17 +40,14 @@ const MentorProfileScreen = ({ route }) => {
           style={{ marginBottom: 10, width: '100%', flex: 1 }}
           contentContainerStyle={{ paddingBottom: 100 + '%' }}
         >
-          <ProfileHeader
-            name={`${name.first} ${name.last}`}
-            picture={picture.large}
-          />
+          <ProfileHeader name={`${first_name} ${last_name}`} image={image} />
           <Wrapper p={3} mdCol={6} mt="110px">
             <Text fontFamily="black">Senior Software Developer</Text>
             <Text fontFamily="light">Inivercidad Autonoma de Mexíco</Text>
             <Text fontFamily="light">
-              Mentorias impartidas: {Math.floor(rating * 4)}
+              Mentorias impartidas: {Math.floor(stars * 4)}
             </Text>
-            <Rating primary value={rating} />
+            <Rating primary value={stars} />
             <Button fluid style={{ marginTop: 20 }} variant="primary">
               AGENDAR
             </Button>
